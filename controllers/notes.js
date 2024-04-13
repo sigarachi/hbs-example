@@ -1,8 +1,9 @@
-const notes = [{ id: 1, text: 'Hello world' }];
-
+const Note = require("../models/note-model");
 class NotesController {
 	async getList(_, res) {
-		return notes;
+		const noteData = await Note.findAll()
+		const notes = noteData.map((note) => note.dataValues)
+		return notes
 	}
 
 	async create(req, res) {
@@ -13,13 +14,10 @@ class NotesController {
 				throw new Error('You can not create note with empty text');
 			}
 
-			const note = {
-				id: notes.length + 1,
-				text,
-			};
-
-			notes.push(note);
-			res.json(note);
+			const noteData = await Note.create({
+				text: text
+			})
+			res.json(noteData.dataValues);
 		} catch (e) {
 			res.status(400).json(e.message);
 		}

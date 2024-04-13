@@ -1,5 +1,6 @@
 const express = require('express');
 require('dotenv').config();
+const sequelize = require('./config/db');
 
 const cors = require('cors');
 const handlebars = require('express-handlebars');
@@ -24,11 +25,14 @@ app.get('/', async (_, res) => {
 });
 
 app.get('/create', async (_, res) => {
-	res.render('create', { title: 'Create note' });
+	res.render('create');
 });
 
 const start = async () => {
 	try {
+		await sequelize.authenticate();
+		await sequelize.sync();
+
 		app.listen(PORT, () =>
 			console.log(`App has been started on port: ${PORT}`)
 		);
