@@ -1,0 +1,19 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	padding: 12px;
+}
+
+tr {
+	color: blue;
+}
+
+.page_container {
+	padding: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}

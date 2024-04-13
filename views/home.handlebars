@@ -1,0 +1,18 @@
+<h1>Home</h1>
+<a href='/create'>Добавить запись</a>
+<table>
+	<tbody>
+		{{#if notes}}
+			{{#each notes}}
+				<tr>
+					<td>
+						{{this.id}}
+					</td>
+					<td>
+						{{this.text}}
+					</td>
+				</tr>
+			{{/each}}
+		{{/if}}
+	</tbody>
+</table>
